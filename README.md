@@ -1,10 +1,14 @@
+![Screenshot](https://github.com/tomatophp/EcommerceTheme/blob/master/art/screenshot.webp)
+
 # Ecommerce
 
 E-commerce Theme For TomatoPHP Ecommerce
 
 ## Installation
 
-download repo as zip and upload it to your tomato project
+```bash
+composer require tomatophp/EcommerceTheme
+```
 
 ## Support
 
