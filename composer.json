@@ -2,6 +2,15 @@
     "name": "tomatophp/ecommerce-theme-module",
     "description": "E-commerce Theme For TomatoPHP Ecommerce",
     "type": "laravel-module",
+    "keywords": [
+        "php",
+        "laravel",
+        "tomatophp",
+        "ecommerce",
+        "splade",
+        "theme"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Fady Mondy",
