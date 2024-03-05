@@ -7,7 +7,7 @@ E-commerce Theme For TomatoPHP Ecommerce
 ## Installation
 
 ```bash
-composer require tomatophp/EcommerceTheme
+composer require tomatophp/ecommerce-theme-module
 ```
 
 ## Support

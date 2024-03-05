@@ -1,5 +1,5 @@
 {
-    "name": "tomatophp/EcommerceTheme",
+    "name": "tomatophp/ecommerce-theme-module",
     "description": "E-commerce Theme For TomatoPHP Ecommerce",
     "type": "laravel-module",
     "authors": [
@@ -35,6 +35,7 @@
         "tomatophp/tomato-admin": "^1.2",
         "tomatophp/tomato-sections": "^1.0",
         "nwidart/laravel-modules": "^10.0",
-        "tomatophp/tomato-ecommerce": "^1.0"
+        "tomatophp/tomato-ecommerce": "^1.0",
+        "joshbrw/laravel-module-installer": "^2.0"
     }
 }
