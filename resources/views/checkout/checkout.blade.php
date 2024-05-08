@@ -1,8 +1,8 @@
 @extends('ecommerce-theme::layouts.master')
 
 @section('content')
-    <div class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-        <div class="text-2xl font-bold text-gray-800">{{__('Checkout')}}</div>
+    <div class="flex flex-col items-center border-b dark:border-zinc-700 bg-white dark:bg-zinc-900 py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        <div class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{{__('Checkout')}}</div>
     </div>
 
     <x-splade-form method="POST" action="{{route('checkout.submit')}}" :default="array_merge(auth('accounts')->user()->toArray(), [
@@ -16,14 +16,20 @@
     <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <div class="px-4 pt-8">
             <p class="text-xl font-medium">{{__('Order Summary')}}</p>
-            <p class="text-gray-400">{{__('Check your items. And select a suitable shipping method.')}}</p>
-            <div class="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
+            <p class="text-zinc-400">{{__('Check your items. And select a suitable shipping method.')}}</p>
+            <div class="mt-8 gap-3 rounded-lg border dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2 py-4 sm:px-6">
                 @foreach($carts as $cart)
-                    <div class="flex flex-col rounded-lg bg-white sm:flex-row">
+                    <div class="flex flex-col rounded-lg bg-white dark:bg-zinc-800 sm:flex-row">
+                        @if($cart->product?->getMedia('featured_image')?->first())
                         <img class="m-2 h-24 w-28 rounded-md border object-cover object-center" src="{{$cart->product?->getMedia('featured_image')?->first()?->getUrl() ?? url('placeholder.webp')}}" alt="" />
-                        <div class="flex w-full flex-col px-4 py-4">
+                        @else
+                            <div class="m-2 h-24 w-28 flex flex-col justify-center items-center bg-zinc-200 dark:bg-zinc-900 rounded-lg">
+                                <i class="bx bxs-cart text-4xl"></i>
+                            </div>
+                        @endif
+                            <div class="flex w-full flex-col px-4 py-4">
                             <span class="font-semibold">{{$cart->item}}</span>
-                            <span class="float-right text-gray-400">
+                            <span class="float-right text-zinc-400 dark:text-zinc-200">
                                 @foreach($cart->options as $key=>$option)
                                     {{str($key)->ucfirst()}} : {{$option}} <br>
                                 @endforeach
@@ -34,16 +40,22 @@
                 @endforeach
             </div>
 
-            <p class="mt-8 text-lg font-medium">Shipping Methods</p>
+            <p class="mt-8 text-lg font-medium">{{__('Shipping Methods')}}</p>
             <div class="mt-5 grid gap-6 my-4">
                 @foreach($shippers as $shipper)
                     <div class="relative" @click.prevnt="form.shipper_id = @js($shipper->id)">
-                        <span v-bind:class="{'border-gray-700':form.shipper_id === @js($shipper->id)}" class="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                        <label v-bind:class="{'border-2 border-gray-700 bg-gray-50':form.shipper_id === @js($shipper->id)}" class="flex cursor-pointer select-none rounded-lg border border-gray-300 p-4">
+                        <span v-bind:class="{'border-primary-600':form.shipper_id === @js($shipper->id)}" class="absolute rtl:left-4 ltr:right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8"></span>
+                        <label v-bind:class="{'border border-zinc-200 bg-white dark:bg-zinc-800 dark:border-zinc-700':form.shipper_id === @js($shipper->id)}" class="flex cursor-pointer select-none rounded-lg border p-4">
+                            @if($shipper->getMedia('logo')?->first()?->getUrl())
                             <div class="w-14 h-14 bg-center bg-contain rounded-lg border" style="background-image: url('{{$shipper->getMedia('logo')?->first()?->getUrl() ?? url('placeholder.webp')}}')">
 
                             </div>
-                            <div class="ml-5">
+                            @else
+                                <div class="w-14 h-14 flex flex-col justify-center items-center bg-zinc-200 dark:bg-zinc-900 rounded-lg">
+                                    <i class="bx bxs-truck text-2xl"></i>
+                                </div>
+                            @endif
+                            <div class="rtl:mr-5 ltr:ml-5">
                                 <span class="mt-2 font-semibold">{{$shipper->name}}</span>
                                 <p class="text-slate-500 text-sm leading-6">{{__('Delivery: 2-4 Days')}}</p>
                             </div>
@@ -53,9 +65,9 @@
 
             </div>
         </div>
-        <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+        <div class="mt-10 bg-zinc-50 dark:bg-zinc-800 px-4 pt-8 lg:mt-0">
             <p class="text-xl font-medium">{{__('Payment Details')}}</p>
-            <p class="text-gray-400">{{__('Complete your order by providing your payment details.')}}</p>
+            <p class="text-zinc-400">{{__('Complete your order by providing your payment details.')}}</p>
             <div class="my-4 flex flex-col gap-4">
                 <x-splade-input disabled name="name" type="text"  label="{{__('Name')}}" placeholder="{{__('Your Name')}}" />
                 <x-splade-input disabled name="email" type="email"  label="{{__('Email')}}" placeholder="{{__('Your Email')}}" />
@@ -94,7 +106,7 @@
                     />
                 </div>
                 <div>
-                    <label class="block text-sm font-medium leading-6 text-gray-950 dark:text-white">{{__('Payment Methods')}}</label>
+                    <label class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white">{{__('Payment Methods')}}</label>
                     <div class="flex justify-start gap-4 my-2">
                         <x-splade-radio name="payment_method" value="cash" label="{{__('Cash')}}" />
                         <x-splade-radio name="payment_method" value="wallet" label="{{__('Wallet')}}" />
@@ -114,26 +126,26 @@
 
                 <!-- Total -->
 
-                <div class="mt-6 border-t border-b py-2">
+                <div class="mt-6 border-t dark:border-zinc-700 border-b py-2">
                     <div class="flex items-center justify-between">
-                        <p class="text-sm font-medium text-gray-900">{{__('Subtotal')}}</p>
-                        <p class="text-gray-900 font-bold">@{{ Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(@js($carts->map(fn($item)=> $item->total)->sum())) }}</p>
+                        <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">{{__('Subtotal')}}</p>
+                        <p class="text-zinc-900 dark:text-zinc-100 font-bold">@{{ Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(@js($carts->map(fn($item)=> $item->total)->sum())) }}</p>
                     </div>
                     <div class="flex items-center justify-between">
-                        <p class="text-sm font-medium text-gray-900">{{__('Shipping')}}</p>
-                            <p class="font-semibold text-gray-900"><span class="font-bold">@{{ response.price ? Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(response.price) : Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(0) }}</span></p>
+                        <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">{{__('Shipping')}}</p>
+                            <p class="font-semibold text-zinc-900 dark:text-zinc-100"><span class="font-bold">@{{ response.price ? Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(response.price) : Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(0) }}</span></p>
 
                     </div>
                 </div>
                 <div class="mt-6 flex items-center justify-between">
-                    <p class="text-sm font-medium text-gray-900">{{__('Total')}}</p>
-                    <p class="text-2xl font-semibold text-gray-900">
+                    <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">{{__('Total')}}</p>
+                    <p class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
                         <span class="font-bold">@{{ response.price ? Intl.NumberFormat('en-US', {style: 'currency',currency: @js(setting('local_currency'))}).format(response.price + @js($carts->map(fn($item)=> $item->total)->sum())) : Intl.NumberFormat(@js(app()->getLocale() === 'ar' ? 'ar-EG' : 'en-US'), {style: 'currency',currency: @js(setting('local_currency'))}).format(@js($carts->map(fn($item)=> $item->total)->sum())) }}</span>
                     </p>
                 </div>
                 </x-splade-defer>
             </div>
-            <x-splade-submit spinner  class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">{{__('Place Order')}}</x-splade-submit>
+            <x-tomato-admin-submit spinner  class="mt-4 mb-8 w-full rounded-md bg-zinc-900 px-6 py-3 font-medium text-white">{{__('Place Order')}}</x-tomato-admin-submit>
         </div>
     </div>
     </x-splade-form>

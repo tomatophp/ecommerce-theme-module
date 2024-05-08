@@ -10,9 +10,9 @@
             <div>
                 {{__('Balance After Charge:')}} <span class="text-xl font-bold">@{{ parseFloat(data.balance) + parseFloat(form.new_balance ?form.new_balance: 0) }}</span>{{setting('local_currency')}}
             </div>
-            <hr>
+            <div class="my-4 border border-zinc-200 dark:border-zinc-700"></div>
             <div>
-                <label class="block text-sm font-medium leading-6 text-gray-950 dark:text-white">{{__('Payment Methods')}}</label>
+                <label class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white">{{__('Payment Methods')}}</label>
                 <div class="flex justify-start gap-4 my-2">
                     <x-splade-radio name="payment_method" value="gift" label="{{__('Gift Card')}}" />
                     <x-splade-radio name="payment_method" value="card" label="{{__('Credit Card')}}" />

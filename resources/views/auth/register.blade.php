@@ -1,7 +1,7 @@
 @extends('ecommerce-theme::layouts.master')
 
 @section('content')
-    <section class="bg-white">
+    <section class="bg-white dark:bg-zinc-900 h-screen">
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <aside
                 class="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6"
@@ -23,12 +23,12 @@
                     </a>
 
                     <h1
-                        class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
+                        class="mt-6 text-2xl font-bold text-zinc-900 dark:text-zinc-100 sm:text-3xl md:text-4xl"
                     >
                         {{__('Register')}}
                     </h1>
 
-                    <p class="mt-4 leading-relaxed text-gray-500">
+                    <p class="mt-4 leading-relaxed text-zinc-500 dark:text-zinc-200">
                         {{ __('Please fill all fields to register a new account')  }}
                     </p>
 
@@ -36,7 +36,7 @@
                         <div class="col-span-6">
                             <label
                                 for="Name"
-                                class="block text-sm font-medium text-gray-700"
+                                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
                             >
                                 {{__('Name')}}
                             </label>
@@ -50,7 +50,7 @@
 
 
                         <div class="col-span-6">
-                            <label for="Email" class="block text-sm font-medium text-gray-700">
+                            <label for="Email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
                                 {{__('Email')}}
                             </label>
 
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="col-span-6">
-                            <label for="Phone" class="block text-sm font-medium text-gray-700">
+                            <label for="Phone" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
                                 {{__('Phone')}}
                             </label>
 
@@ -76,7 +76,7 @@
                         <div class="col-span-6 sm:col-span-3">
                             <label
                                 for="Password"
-                                class="block text-sm font-medium text-gray-700"
+                                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
                             >
                                 {{__('Password')}}
                             </label>
@@ -91,7 +91,7 @@
                         <div class="col-span-6 sm:col-span-3">
                             <label
                                 for="PasswordConfirmation"
-                                class="block text-sm font-medium text-gray-700"
+                                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
                             >
                                 {{__('Password Confirmation')}}
                             </label>
@@ -104,14 +104,14 @@
                         </div>
 
                         <div class="col-span-6">
-                            <label for="MarketingAccept" class="flex gap-4">
+                            <label for="MarketingAccept" class="flex gap-2">
                                 <x-splade-checkbox
                                     type="checkbox"
                                     id="MarketingAccept"
                                     name="marketing_accept"
                                 />
 
-                                <span class="text-sm text-gray-700">
+                                <span class="text-sm text-zinc-700 dark:text-zinc-300">
                                     {{__('I want to receive emails about events, product updates and
                                 company announcements.')}}
                               </span>
@@ -119,27 +119,26 @@
                         </div>
 
                         <div class="col-span-6">
-                            <p class="text-sm text-gray-500">
+                            <p class="text-sm text-zinc-500 dark:text-zinc-200">
                                 {{__('By creating an account, you agree to our')}}
-                                <x-splade-link href="{{url('/terms')}}" class="text-gray-700 underline">
+                                <x-splade-link href="{{url('/terms')}}" class="text-zinc-700 dark:text-zinc-300 underline">
                                     {{__('terms and conditions')}}
                                 </x-splade-link>
                                 {{__('and')}}
-                                <x-splade-link href="{{url('/privacy')}}" class="text-gray-700 underline">{{__('privacy policy')}}</x-splade-link>.
+                                <x-splade-link href="{{url('/privacy')}}" class="text-zinc-700 dark:text-zinc-300 underline">{{__('privacy policy')}}</x-splade-link>.
                             </p>
                         </div>
 
                         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                            <x-splade-submit
+                            <x-tomato-admin-submit
                                 spinner
-                                class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                             >
                                 {{__('Create an account')}}
-                            </x-splade-submit>
+                            </x-tomato-admin-submit>
 
-                            <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                            <p class="mt-4 text-sm text-zinc-500 dark:text-zinc-200 sm:mt-0">
                                 {{__('Already have an account?')}}
-                                <x-splade-link href="{{route('accounts.login')}}" class="text-gray-700 underline">{{__('Log in')}}</x-splade-link>.
+                                <x-splade-link href="{{route('accounts.login')}}" class="text-zinc-700 dark:text-zinc-300 underline">{{__('Log in')}}</x-splade-link>.
                             </p>
                         </div>
                     </x-splade-form>

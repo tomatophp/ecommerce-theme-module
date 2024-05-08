@@ -1,22 +1,22 @@
-@extends('ecommerce-theme::layouts.master')
+@extends('ecommerce-theme::layouts.profile')
 
-@section('content')
-    <div class="px-8 py-4">
+@section('body')
+    <div class="w-full">
         <div class="flex justify-between items-center my-4">
             <h1 class="text-2xl font-bold">{{__('Wallet')}}</h1>
             <x-tomato-admin-button modal :href="route('profile.wallet.create')">
                 {{__('Change Balance')}}
             </x-tomato-admin-button>
         </div>
-        <div class="flex items-center p-4 bg-white border rounded-lg shadow-xs dark:bg-gray-800 my-4">
-            <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+        <div class="flex items-center p-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-xs my-4">
+            <div class="p-3 ltr:mr-4 rtl:ml-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                 <x-heroicon-s-currency-dollar class="w-4 h-4" />
             </div>
             <div>
-                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="mb-2 text-sm font-medium text-zinc-600 dark:text-zinc-300">
                     {{__('Account Balance')}}
                 </p>
-                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                <p class="text-lg font-semibold text-zinc-700 dark:text-zinc-200">
                     {!! dollar(auth('accounts')->user()->balance) !!}
                 </p>
             </div>

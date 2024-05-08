@@ -99,7 +99,7 @@ class HomeController extends Controller
 
     public function faq(Request $request){
         if(class_exists(\TomatoPHP\TomatoSupport\Models\Question::class)){
-            $page = Page::where('slug', 'faq')->first();
+            $page = Page::where('slug', '/faq')->first();
             if(!$page){
                 $page = new Page();
                 $page->title = 'FAQ';
@@ -204,6 +204,8 @@ class HomeController extends Controller
         Toast::success(__('Your message has been sent successfully!'))->autoDismiss(2);
         return redirect()->back();
     }
+
+
 
 
 }

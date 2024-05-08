@@ -1,7 +1,7 @@
-@extends('ecommerce-theme::layouts.master')
+@extends('ecommerce-theme::layouts.profile')
 
-@section('content')
-    <div class="px-8 py-4">
+@section('body')
+    <div class="w-full">
         <div class="flex justify-between items-center my-4">
             <h1 class="text-2xl font-bold">{{__('Orders')}}</h1>
         </div>

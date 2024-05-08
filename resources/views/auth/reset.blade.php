@@ -1,7 +1,7 @@
 @extends('ecommerce-theme::layouts.master')
 
 @section('content')
-    <section class="bg-white">
+    <section class="bg-white dark:bg-zinc-900 h-screen">
         <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
             <aside
                 class="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6"
@@ -23,12 +23,12 @@
                     </a>
 
                     <h1
-                        class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
+                        class="mt-6 text-2xl font-bold text-zinc-900 dark:text-zinc-100 sm:text-3xl md:text-4xl"
                     >
                         {{__('Verify OTP')}}
                     </h1>
 
-                    <p class="mt-4 leading-relaxed text-gray-500">
+                    <p class="mt-4 leading-relaxed text-zinc-500 dark:text-zinc-200">
                         {{ __('Please input code you got on your email and your new password')  }}
                     </p>
 
@@ -58,15 +58,13 @@
                         </div>
 
                         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                            <button
-                                class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                            >
+                            <x-tomato-admin-submit spinner>
                                 {{__('Reset Password')}}
-                            </button>
+                            </x-tomato-admin-submit>
 
-                            <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                            <p class="mt-4 text-sm text-zinc-500 dark:text-zinc-200 sm:mt-0">
                                 {{__("Don't get the code?")}}
-                                <x-splade-link href="{{route('accounts.otp.resend')}}" class="text-gray-700 underline" method="POST">{{__('Resend')}}</x-splade-link>.
+                                <x-splade-link href="{{route('accounts.otp.resend')}}" class="text-zinc-700 dark:text-zinc-300 underline" method="POST">{{__('Resend')}}</x-splade-link>.
                             </p>
 
                         </div>

@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'splade'])->name('home.')->group(function() {
+    Route::post('/switch', [\TomatoPHP\TomatoAdmin\Http\Controllers\DashboardController::class, 'switchLang'])->name('lang');
     Route::get('/', [\Modules\EcommerceTheme\App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/about', [\Modules\EcommerceTheme\App\Http\Controllers\HomeController::class, 'about'])->name('about');
     Route::get('/faq', [\Modules\EcommerceTheme\App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
@@ -20,9 +21,23 @@ Route::middleware(['web', 'splade'])->prefix('shop')->name('shop.')->group(funct
     Route::get('/product/{slug}', [\Modules\EcommerceTheme\App\Http\Controllers\ShopController::class, 'product'])->name('product');
 });
 
-Route::middleware(['web', 'splade'])->prefix('blog')->name('blog.')->group(function() {
-    Route::get('/', [\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'index'])->name('index');
-    Route::get('/{slug}', [\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'post'])->name('post');
+Route::middleware(['web', 'splade'])->prefix('projects')->name('projects.')->group(function() {
+    Route::get('/', [\Modules\EcommerceTheme\App\Http\Controllers\ProjectsController::class, 'index'])->name('index');
+    Route::get('/{project}',[\Modules\EcommerceTheme\App\Http\Controllers\ProjectsController::class, 'show'])->name('show');
+});
+
+Route::middleware(['web', 'splade'])->prefix('services')->name('services.')->group(function() {
+    Route::get('/{service}',[\Modules\EcommerceTheme\App\Http\Controllers\ServicesController::class, 'show'])->name('service');
+});
+
+
+Route::middleware(['web', 'splade'])->name('blog.')->group(function() {
+    Route::get('/blog', [\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'index'])->name('index');
+    Route::get('/blog/{slug}', [\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'post'])->name('post');
+    Route::get('/info',[\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'info'])->name('info');
+    Route::get('/info/{post}',[\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'showInfo'])->name('show-info');
+    Route::get('/open-source',[\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'openSources'])->name('open-source');
+    Route::get('/videos',[\Modules\EcommerceTheme\App\Http\Controllers\BlogController::class, 'videos'])->name('videos');
 });
 
 
