@@ -1,4 +1,4 @@
-![Screenshot](https://github.com/tomatophp/EcommerceTheme/blob/master/art/screenshot.webp)
+![Screenshot](https://github.com/tomatophp/EcommerceTheme/blob/master/art/screenshot.png)
 
 # Ecommerce
 
